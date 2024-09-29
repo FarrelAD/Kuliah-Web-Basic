@@ -7,7 +7,7 @@
 </div>
 
 <div align="center">
-    <a href="https://farrelad.github.io/Ngampus-POLINEMA/semester-3/01-desain-dan-pemrograman-web">Klik di sini!</a>
+    <a href="https://farrelad.github.io/Kuliah-Web-Basic">Klik di sini!</a>
 </div>
 
 <br>
