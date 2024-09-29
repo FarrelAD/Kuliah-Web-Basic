@@ -75,7 +75,6 @@ class ProjectCard extends HTMLElement {
                 break;
             case 'web-img-preview-src':
                 shadowRoot.querySelector('.img-web-preview').setAttribute('src', newValue)
-                console.log(shadowRoot.querySelector('.img-web-preview').getAttribute('src'))
                 break;
             case 'project-title':
                 shadowRoot.querySelector('.project-title').textContent = newValue
