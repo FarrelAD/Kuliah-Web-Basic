@@ -60,7 +60,7 @@ class ProjectCard extends HTMLElement {
                 font-size: 10px;
             }
         `
-        shadow.append(style)
+        shadow.appendChild(style)
     }
 
     static get observedAttributes() {

@@ -32,36 +32,6 @@ main {
     height: 500px;
 }
 
-.week-option {
-    box-sizing: border-box;
-    width: 100%;
-    padding: .5rem .5rem;
-    padding-left: 2rem;
-    outline: 2px solid black;
-}
-
-.week-option:first-of-type {
-    border-top-left-radius: 0.4rem;
-    border-top-right-radius: 0.4rem;
-    background-color: black;
-    color: white;
-    font-weight: bold;
-}
-
-.week-option:hover {
-    cursor: pointer;
-    background-color: lightgray;
-    color: white;
-    outline: 2px solid gray;
-}
-
-.week-option:active {
-    background-color: black;
-    outline: 2px solid black;
-    color: white;
-    font-weight: bold;
-}
-
 #main-content {
     width: 85%;
     padding: 2rem;

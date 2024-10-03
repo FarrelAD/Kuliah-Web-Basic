@@ -1,3 +1,14 @@
+// Attach component to main HTML document
+const leftSideBarNav = document.querySelector('#left-sidebar')
+const weekProjectDataSection = document.querySelectorAll('.week-project-data')
+
+import data from '../../data/data.js'
+import '../../components/ProjectCard.js'
+import '../../components/SidebarNav.js'
+
+const sidebarNav = document.createElement('sidebar-nav')
+leftSideBarNav.appendChild(sidebarNav)
+
 const weekOptions = document.querySelectorAll('.week-option')
 const weekProjectsData = document.querySelectorAll('.week-project-data')
 
@@ -17,11 +28,6 @@ weekOptions.forEach((week, index) => {
 })
 
 
-// Attach component to main HTML document
-const weekProjectDataSection = document.querySelectorAll('.week-project-data')
-
-import data from '../../data/data.js'
-import '../../components/ProjectCard.js'
 
 for (let i = 0; i < data.length; i++) {
     data[i].forEach(el => {
