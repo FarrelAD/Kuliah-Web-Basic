@@ -1,0 +1,30 @@
+body {
+    display: flex;
+    justify-content: center;
+}
+
+main {
+    margin: 60px 6rem 5rem 6rem;
+    max-width: 60%;
+}
+
+#vote-link,
+#view-vote-result-link {
+    display: block;
+    width: 200px;
+    padding: 8px;
+    box-sizing: border-box;
+    font-size: 16px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    border: 1px solid #ccc;
+    background-color: #F6B116;
+    border-radius: 8px;
+    margin: 1rem 0;
+}
+
+#vote-link:hover,
+#view-vote-result-link:hover {
+    cursor: pointer;
+}

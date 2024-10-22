@@ -1,0 +1,46 @@
+body {
+    display: flex;
+    justify-content: center;
+}
+
+main {
+    margin: 60px 6rem 5rem 6rem;
+    max-width: 60%;
+}
+
+#hero-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#hero-description {
+    width: 50%;
+}
+
+#hero-web-title {
+    font-size: 4em;
+    font-weight: bold;
+}
+
+#community-tagline {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 2em;
+    font-style: italic;
+    color: #f68105;
+}
+
+#vote-icon {
+    width: 40%;
+}
+
+#vote-trigger-link {
+    margin-top: 3rem;
+    background-color: #F6B116;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    box-sizing: border-box;
+    padding: 1.5rem;
+    border-radius: 8px;
+}

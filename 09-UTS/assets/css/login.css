@@ -1,0 +1,57 @@
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    min-width: 100vw;
+}
+
+#form-login {
+    background-color: white;
+    width: 600px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+input {
+    width: 200px;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+#nim-input {
+    -moz-appearance: textfield;
+}
+
+#nim-input::-webkit-inner-spin-button,
+#nim-input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+#nim-input,
+#password-input {
+    margin: 1rem 0;
+}
+
+#forget-password-link {
+    margin-top: 2rem;
+    color: black;
+}
+
+input[type="submit"] {
+    margin-top: 2rem;
+    background-color: black;
+    color: white;
+    font-weight: bold;
+}
+
+input[type="submit"]:hover {
+    cursor: pointer;
+}
