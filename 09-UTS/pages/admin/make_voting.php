@@ -33,8 +33,6 @@
                 <button id="generator-form-btn">OK</button>
 
                 <form id="form-container">
-
-                    <input id="submit-all-data-btn" type="button" value="Kirim">
                 </form>
             </main>
 
