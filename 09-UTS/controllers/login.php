@@ -21,6 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     foreach ($_SESSION['users_data'] as $user) {
         if ($user['nim'] == $nim && $user['password'] == $password) {
             $_SESSION['user_id'] = $user['nim'];
+            $_SESSION['name'] = $user['name'];
             $_SESSION['role'] = $user['role'];
 
             echo "Login sukses!";
