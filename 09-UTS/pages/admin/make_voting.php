@@ -27,7 +27,19 @@
             ?>
             <main>
                 <h1>Buat voting</h1>
+
+                <p>Masukkan jumlah kandidat</p>
+                <input id="candidate-total-input" type="number" min="1" placeholder="0">
+                <button id="generator-form-btn">OK</button>
+
+                <form id="form-container">
+
+                    <input id="submit-all-data-btn" type="button" value="Kirim">
+                </form>
             </main>
+
+            <script src="../../assets/js/jquery/jquery-3.7.1.min.js"></script>
+            <script src="../../assets/js/admin/make_voting.js"></script>
     <?php } ?>
 </body>
 
