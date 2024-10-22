@@ -21,9 +21,10 @@
             exit();
         }
 
-        if ($_SESSION['role'] == 'member') {
+        if (!$_SESSION['role'] == 'member') {
+            include '../../components/not_authorized.php';
+        } else {
     ?>
-
         <main>
             <h1>Voting</h1>
             <p>Silakan pilih pemimpin yang menurut anda paling cocok untuk memimpin komunitas ini!</p>
@@ -54,7 +55,7 @@
             </form>
         </main>
 
-    <?php } else { include '../../components/not_authorized.php'; } ?>
+    <?php } ?>
 
     <script src="../../assets/js/jquery/jquery-3.7.1.min.js"></script>
     <script src="../../assets/js/member/vote.js"></script>

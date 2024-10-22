@@ -1,8 +1,19 @@
 <nav>
+    <?php
+        $dashboard_link = 'http://' . $_SERVER['HTTP_HOST'] . '/pages/member/dashboard.php';
+
+        if (isset($_SESSION['user_id'])) {
+            if ($_SESSION['role'] == 'admin') {
+                $dashboard_link = 'http://' . $_SERVER['HTTP_HOST'] . '/pages/admin/dashboard.php';
+            }
+        }
+    ?>
+
     <a href="<?php echo 'http://' . $_SERVER['HTTP_HOST'] ?>" id="wri-logo-nav-container">
-        <img src="<?php echo 'http://' . $_SERVER['HTTP_HOST'] . '/assets/img/wri_logo_full.jpg' ?>" alt="Logo WRI" id="wri-landingpage-logo">
+        <img src="<?php echo 'http://' . $_SERVER['HTTP_HOST'] . '/assets/img/wri_logo_full.jpg' ?>" alt="Logo WRI"
+            id="wri-landingpage-logo">
     </a>
-    <a href="<?php echo 'http://' . $_SERVER['HTTP_HOST'] . '/pages/member/dashboard.php' ?>" id="home-href">
+    <a href="<?php echo $dashboard_link ?>" id="home-href">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
             class="size-6" id="home-icon">
             <path stroke-linecap="round" stroke-linejoin="round"
@@ -32,7 +43,7 @@
         height: 85%;
     }
 
-    #wri-logo-nav-container > img {
+    #wri-logo-nav-container>img {
         height: 100%;
         border: 2px solid white;
     }

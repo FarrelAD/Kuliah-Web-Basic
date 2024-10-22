@@ -1,0 +1,8 @@
+body {
+    display: flex;
+}
+
+main {
+    margin: 60px 6rem 5rem 6rem;
+    max-width: 60%;
+}

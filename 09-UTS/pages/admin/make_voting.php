@@ -26,7 +26,7 @@
         } else {
             ?>
             <main>
-                <h1>Buat Pengumuman</h1>
+                <h1>Buat voting</h1>
             </main>
     <?php } ?>
 </body>

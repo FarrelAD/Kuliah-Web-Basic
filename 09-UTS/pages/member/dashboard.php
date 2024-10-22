@@ -13,7 +13,6 @@
 <body>
     <?php 
         include '../../components/navbar.php';
-
         session_start();
     
         if (!isset($_SESSION['user_id'])) {
@@ -21,18 +20,16 @@
             exit();
         }
 
-        if ($_SESSION['role'] == 'member') {
+        if (!$_SESSION['role'] == 'member') {
+            include '../../components/not_authorized.php';
+        } else {
     ?>
-
         <main>
             <h1>Dashboard</h1>
             <a href="vote.php" id="vote-link">Voting</a>
             <a href="view_vote_result.php" id="view-vote-result-link">Lihat hasil voting</a>
         </main>
-
-    <?php } else {
-        include '../../components/not_authorized.php';
-    } ?>
+    <?php } ?>
 </body>
 
 </html>

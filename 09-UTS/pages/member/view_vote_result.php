@@ -9,7 +9,24 @@
 </head>
 
 <body>
-    <h1>Ini halaman hasil voting untuk anggota organisasi!</h1>
+    <?php 
+        include '../../components/navbar.php';
+
+        session_start();
+    
+        if (!isset($_SESSION['user_id'])) {
+            include '../../components/not_authenticated.php';
+            exit();
+        }
+
+        if (!$_SESSION['role'] == 'member') {
+            include '../../components/not_authorized.php';
+        } else {
+    ?>
+        <main>
+            <h1>Halaman hasil voting</h1>
+        </main>
+    <?php } ?>
 </body>
 
 </html>

@@ -34,7 +34,19 @@
             <img src="assets/img/check-mark-icon.jpg" alt="Vote img" id="vote-icon">
         </div>
 
-        <a id="vote-trigger-link" href="<?php echo isset($_SESSION['user_id']) ? 'pages/member/dashboard.php' : 'pages/login.php';?>">Ikuti voting sekarang</a>
+        <?php 
+            $trigger_link = "pages/login.php";
+
+            if (isset($_SESSION['user_id']) ) {
+                if ($_SESSION['role'] == 'admin') {
+                    $trigger_link = 'pages/admin/dashboard.php';
+                } elseif ($_SESSION['role'] == 'member') {
+                    $trigger_link = 'pages/member/dashboard.php';
+                }
+            }
+        ?>
+
+        <a id="vote-trigger-link" href="<?php echo $trigger_link; ?>">Ikuti voting sekarang</a>
     </main>
 </body>
 
