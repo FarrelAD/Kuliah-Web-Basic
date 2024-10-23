@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $image_name = basename($images['name'][$i]);
             $image_temp_path = $images['tmp_name'][$i];
 
-            $target_dir = 'http://' . $_SERVER['HTTP_HOST'] . '/assets/img/candidate-photos/';
+            $target_dir = __DIR__ . '/../../assets/img/candidate-photos/';
             $target_file_path = $target_dir . $image_name;
 
             if (move_uploaded_file($image_temp_path, $target_file_path)) {
@@ -52,7 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             "class"=>$class,
             "description"=>$description,
             "total_vote"=>0,
-            "photo_dir"=>$target_file_path
+            "photo_dir"=>'http://' . $_SERVER['HTTP_HOST'] . $image_name
         ];
     }
 }
