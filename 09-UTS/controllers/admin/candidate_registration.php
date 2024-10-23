@@ -25,11 +25,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $descriptions = $_POST['description'];
     $images = $_FILES['image'];
 
+    
     for ($i = 0; $i < count($names); $i++) {
         $name = $names[$i];
         $class = $classes[$i];
         $description = $descriptions[$i];
-
+        
         if (isset($images['name'][$i]) && $images['error'][$i] === UPLOAD_ERR_OK) {
             $image_name = basename($images['name'][$i]);
             $image_temp_path = $images['tmp_name'][$i];
@@ -45,5 +46,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } else {
             echo "No image provided for $name.<br>";
         }
+
+        $_SESSION['candidate_data'][] = [
+            "name"=> $names,
+            "class"=>$class,
+            "description"=>$description,
+            "total_vote"=>0,
+            "photo_dir"=>$target_file_path
+        ];
     }
 }
