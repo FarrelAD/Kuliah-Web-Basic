@@ -35,12 +35,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $image_name = basename($images['name'][$i]);
             $image_temp_path = $images['tmp_name'][$i];
 
-            $target_dir = __DIR__ . '/../../assets/img/upload/candidate-photos/';
+            $target_dir = 'http://' . $_SERVER['HTTP_HOST'] . '/assets/img/candidate-photos/';
             $target_file_path = $target_dir . $image_name;
 
             if (move_uploaded_file($image_temp_path, $target_file_path)) {
                 echo "Image for $name uploaded successfully.<br>";
-            } else {
+            } else { 
                 echo "Error uploading image for $name.<br>";
             }
         } else {

@@ -15,8 +15,9 @@ main {
 }
 
 #candidate-container {
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
 }
 
 .candidate-card {
@@ -40,11 +41,13 @@ main {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
 }
 
-.candidate-desc {
+.candidate-info {
     width: 100%;
-    height: 80px;
+    height: 150px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -54,8 +57,18 @@ main {
     color: white;
 }
 
-.candidate-desc p {
+.candidate-name {
+    margin-bottom: .5rem;
+}
+
+.candidate-info p {
     margin: 0;
+}
+
+.candidate-description {
+    font-size: .6rem;
+    height: 40px;
+    overflow: hidden;
 }
 
 .vote-button {

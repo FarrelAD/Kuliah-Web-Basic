@@ -26,14 +26,14 @@ $candidate_data = [
         "name"=> "Agus",
         "class"=> "TI-2F",
         "total_vote"=> 0,
-        "description"=>"",
-        "photo_dir"=>""
+        "description"=>"Mewujudkan komunitas IT yang kreatif, inovatif, dan saling mendukung dalam menjawab tantangan digital.",
+        "photo_dir"=>'http://' . $_SERVER['HTTP_HOST'] . '/assets/img/candidate-photos/Agus.jpg'
     ],
     [
         "name"=> "Biru",
         "class"=> "SIB-3D",
         "total_vote"=> 0,
-        "description"=>"",
-        "photo_dir"=>""
+        "description"=>"Menciptakan ekosistem IT yang inklusif dan berkelanjutan, di mana setiap anggota berkontribusi dan berkembang bersama.",
+        "photo_dir"=>'http://' . $_SERVER['HTTP_HOST'] . '/assets/img/candidate-photos/Biru.jpg'
     ]
 ];

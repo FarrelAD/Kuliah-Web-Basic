@@ -10,6 +10,8 @@ $(document).ready(() => {
         doVote(this);
     })
 
+    
+
     $('#form-vote').submit(function(event) {
         event.preventDefault()
 

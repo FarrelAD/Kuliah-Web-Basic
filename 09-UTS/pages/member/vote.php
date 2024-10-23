@@ -31,27 +31,27 @@
 
             <form id="form-vote" method="post" action="../../controllers/member/vote_handler.php">
                 <div id="candidate-container">
-                    <div class="candidate-card">
-                        <div class="candidate-photo-container">
-                            <img src="../../assets/img/man1.jpg" alt="Candidate photo" class="candidate-photo">
-                        </div>
-                        <div class="candidate-desc">
-                            <p>Kandidat 1</p>
-                            <button class="vote-button" data-id="1">Vote</button>
-                        </div>
-                    </div>
-                    <div class="candidate-card">
-                        <div class="candidate-photo-container">
-                            <img src="../../assets/img/man2.jpg" alt="Candidate photo" class="candidate-photo">
-                        </div>
-                        <div class="candidate-desc">
-                            <p>Kandidat 2</p>
-                            <button class="vote-button" data-id="2">Vote</button>
-                        </div>
-                    </div>
+                    <?php 
+
+                    foreach ($_SESSION['candidate_data'] as $index => $candidate) {
+                        echo '
+                            <div class="candidate-card">
+                                <div class="candidate-photo-container">
+                                    <img src="' . $candidate["photo_dir"] . '" alt="Candidate photo" class="candidate-photo">
+                                </div>
+                                <div class="candidate-info">
+                                    <p class="candidate-name">' . $candidate["name"] . '</p>
+                                    <p class="candidate-description">' . $candidate["description"] . '</p>
+                                    <button class="vote-button" data-id=' . ($index+1) . '>Vote</button>
+                                </div>
+                            </div>
+                        ';
+                    }
+
+                    ?>
                 </div>
 
-                <input type="submit" value="Kirim" id="form-submit">
+                <input type="submit" value="Kirim" id="form-submit-btn">
             </form>
         </main>
 
