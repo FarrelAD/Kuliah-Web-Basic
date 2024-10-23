@@ -18,3 +18,10 @@ main {
     padding: 1.5rem;
     border-radius: 8px;
 }
+
+.admin-menu:hover {
+    cursor: pointer;
+    background-color: #f7dea4;
+    color: #F6B116;
+    outline: 2px solid #F6B116;
+}

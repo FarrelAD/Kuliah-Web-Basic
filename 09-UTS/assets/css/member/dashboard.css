@@ -21,9 +21,13 @@ main {
     background-color: #F6B116;
     border-radius: 8px;
     margin: 1rem 0;
+    outline: 2px solid #F6B116;
 }
 
 #vote-link:hover,
 #view-vote-result-link:hover {
     cursor: pointer;
+    background-color: #f7dea4;
+    color: #F6B116;
+    outline: 2px solid #F6B116;
 }

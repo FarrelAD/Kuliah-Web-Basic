@@ -69,10 +69,12 @@ main {
 }
 
 .vote-button:hover {
-
+    background-color: gray;
+    border: 2px solid white;
+    color: white;
 }
 
-#form-submit {
+#form-submit-btn {
     margin-top: 2rem;
     background-color: #F6B116;
     text-decoration: none;
@@ -82,4 +84,12 @@ main {
     box-sizing: border-box;
     padding: 1rem;
     border-radius: 8px;
+    outline: 2px solid #F6B116;
+}
+
+#form-submit-btn:hover {
+    cursor: pointer;
+    background-color: #f7dea4;
+    color: #F6B116;
+    outline: 2px solid #F6B116;
 }
