@@ -37,11 +37,4 @@ $(document).ready(() => {
 
         $('#form-registration').append(inputSubmit)
     })
-
-
-    // $('#form-registration').submit(function(event) {
-    //     event.preventDefault()
-
-
-    // })
 })
