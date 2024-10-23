@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pemilihan Umum</title>
     <link rel="stylesheet" href="../../assets/css/global.css">
+    <link rel="stylesheet" href="../../assets/css/member/view_vote_result.css">
 </head>
 
 <body>
@@ -25,6 +26,17 @@
     ?>
         <main>
             <h1>Halaman hasil voting</h1>
+
+            <?php 
+            
+            foreach ($_SESSION['candidate_data'] as $index => $candidate) {
+                echo '
+                    <h5>Total voting kandidat '. ($index + 1) .'</h5>
+                    <span>'. $candidate['total_vote'].'</span>
+                ';
+            }
+            
+            ?>
         </main>
     <?php } ?>
 </body>
