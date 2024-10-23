@@ -34,7 +34,7 @@
             <img src="assets/img/check-mark-icon.jpg" alt="Vote img" id="vote-icon">
         </div>
 
-        <?php 
+        <?php
             $trigger_link = "pages/login.php";
 
             if (isset($_SESSION['user_id']) ) {

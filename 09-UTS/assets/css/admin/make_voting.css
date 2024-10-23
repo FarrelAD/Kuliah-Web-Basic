@@ -6,3 +6,24 @@ main {
     margin: 60px 6rem 5rem 6rem;
     max-width: 60%;
 }
+
+input,
+textarea {
+    width: 300px;
+}
+
+#generator-form-btn:hover {
+    cursor: pointer;
+}
+
+.sub-form {
+    margin-top: 1rem;
+}
+
+#submit-all-data-btn:hover {
+    cursor: pointer;
+}
+
+textarea {
+    height: 100px;
+}

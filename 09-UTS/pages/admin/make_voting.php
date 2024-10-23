@@ -32,7 +32,7 @@
                 <input id="candidate-total-input" type="number" min="1" placeholder="0">
                 <button id="generator-form-btn">OK</button>
 
-                <form id="form-container">
+                <form id="form-registration" action="../../controllers/admin/candidate_registration.php" enctype="multipart/form-data" method="post">
                 </form>
             </main>
 

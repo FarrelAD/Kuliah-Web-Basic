@@ -26,10 +26,14 @@ $candidate_data = [
         "name"=> "Agus",
         "class"=> "TI-2F",
         "total_vote"=> 0,
+        "description"=>"",
+        "photo_dir"=>""
     ],
     [
         "name"=> "Biru",
         "class"=> "SIB-3D",
         "total_vote"=> 0,
+        "description"=>"",
+        "photo_dir"=>""
     ]
 ];
