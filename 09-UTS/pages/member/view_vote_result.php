@@ -25,18 +25,29 @@
         } else {
     ?>
         <main>
-            <h1>Halaman hasil voting</h1>
+            <h1>Hasil voting</h1>
 
-            <?php 
-            
-            foreach ($_SESSION['candidate_data'] as $index => $candidate) {
-                echo '
-                    <h5>Total voting kandidat '. ($index + 1) .'</h5>
-                    <span>'. $candidate['total_vote'].'</span>
-                ';
-            }
-            
-            ?>
+            <div id="candidate-container">
+                <?php 
+                
+                foreach ($_SESSION['candidate_data'] as $index => $candidate) {
+                    echo '
+                        <div class="candidate-card">
+                            <div class="candidate-photo-container">
+                                <img src="' . $candidate["photo_dir"] . '" alt="Candidate photo" class="candidate-photo">
+                            </div>
+                            <div class="candidate-info">
+                                <p class="candidate-name">' . $candidate["name"] . '</p>
+                                <p class="total-vote">Total vote: 
+                                    <span>'. $candidate['total_vote'].'</span>
+                                </p>
+                            </div>
+                        </div>
+                    ';
+                }
+                
+                ?>
+            </div>
         </main>
     <?php } ?>
 </body>
