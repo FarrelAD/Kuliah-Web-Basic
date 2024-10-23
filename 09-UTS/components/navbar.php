@@ -45,6 +45,7 @@
         justify-content: space-between;
         align-items: center;
         padding: 0 2rem;
+        box-sizing: border-box;
     }
 
     #wri-logo-nav-container {
@@ -54,7 +55,6 @@
 
     #wri-logo-nav-container>img {
         height: 100%;
-        border: 2px solid white;
     }
 
     #home-href,
