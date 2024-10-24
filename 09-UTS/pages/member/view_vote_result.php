@@ -29,8 +29,10 @@
 
             <div id="candidate-container">
                 <?php 
+
+                $candidates = json_decode(file_get_contents("../../data/candidates.json"), true);
                 
-                foreach ($_SESSION['candidate_data'] as $index => $candidate) {
+                foreach ($candidates as $index => $candidate) {
                     echo '
                         <div class="candidate-card">
                             <div class="candidate-photo-container">

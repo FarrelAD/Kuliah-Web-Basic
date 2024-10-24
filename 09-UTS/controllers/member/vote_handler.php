@@ -1,12 +1,8 @@
 <?php
 
-include '../../data/data.php';
-
 session_start();
 
-if (!isset($_SESSION['candidate_data'])) {
-    $_SESSION['candidate_data'] = $candidate_data;
-}
+$candidates = json_decode(file_get_contents("../../data/candidates.json"), true);
 
 
 
@@ -14,7 +10,14 @@ if (!isset($_SESSION['candidate_data'])) {
 if (isset($_POST)) {
     $candidate_id = htmlspecialchars($_POST['selected_candidate']);
     
-    $_SESSION['candidate_data'][$candidate_id - 1]['total_vote'] += 1;
-    echo $candidate_data[$candidate_id - 1]['total_vote'];
-    header('Total-Vote: ' . $_SESSION['candidate_data'][$candidate_id -1]['total_vote']);
+    $candidates[$candidate_id - 1]['total_vote'] += 1;
+
+    // Update data to JSON file
+    file_put_contents('../../data/candidates.json', json_encode($candidates, JSON_PRETTY_PRINT));
+    
+    $response = [
+        "status"=>"Success",
+        "totalVote"=>$candidates[$candidate_id - 1]['total_vote']
+    ];
+    echo json_encode( $response );
 }
