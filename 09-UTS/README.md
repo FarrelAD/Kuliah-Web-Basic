@@ -17,24 +17,15 @@
 
     <details>
         <summary>Command PHP bermasalah ?</summary>
-
-        Masalah ini dikarenakan command PHP masih belum dikenali oleh sistem operasi. Pastikan bahwa anda sudah menambahkan path bin PHP ke dalam environment variable komputer anda. 
-
-        Jika menggunakan Laragon:
-        Direktori bin PHP di Laragon biasa ditemukan di path:
-        ```
-        <parent-directory>\laragon\bin\php\php-<version>-Win32-vs16-x64
-        ```
-
-        Jika menggunakan XAMPP:
-        Direktori bin PHP di Laragon biasa ditemukan di path:
-        ```
-        <parent-directory>\xampp\php
-        ```
-
-  
+        <p>Masalah ini dikarenakan command PHP masih belum dikenali oleh sistem operasi. Pastikan bahwa anda sudah menambahkan path bin PHP ke dalam environment variable komputer anda.</p>
+        <p>Jika menggunakan Laragon:</p>
+        <p>Direktori bin PHP di Laragon biasa ditemukan di path:</p>
+        <code><parent-directory>\laragon\bin\php\php-<version>-Win32-vs16-x64</code>
+        <p>Jika menggunakan XAMPP:</p>
+        <p>Direktori bin PHP di Laragon biasa ditemukan di path:</p>
+        <code><parent-directory>\xampp\php</code>
     </details>
 
-4. Buka browser pada URL `http://localhost:8000`
+5. Buka browser pada URL `http://localhost:8000`
 
     Jika melihat halaman website seperti gambar di atas, maka sudah dipastikan program berhasil. Jika tidak, maka ulangi proses di atas dan pastikan tidak ada yang terlewat.
