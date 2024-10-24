@@ -11,7 +11,9 @@
     }
 
     #login-yuk-btn {
-        margin-top: 2rem;
+        display: block;
+        width: 130px;
+        text-align: center;
         background-color: #F6B116;
         text-decoration: none;
         color: white;
@@ -19,5 +21,12 @@
         box-sizing: border-box;
         padding: 1rem;
         border-radius: 8px;
+    }
+
+    #login-yuk-btn:hover {
+        cursor: pointer;
+        background-color: #f7dea4;
+        color: #F6B116;
+        outline: 2px solid #F6B116;
     }
 </style>
