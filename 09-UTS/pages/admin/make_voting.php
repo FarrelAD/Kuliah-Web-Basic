@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard | PilihWRI</title>
+    <title>Pendaftaran Kandidat | PilihWRI</title>
     <link rel="shortcut icon" href="<?php echo 'http://' . $_SERVER['HTTP_HOST'] . '/assets/img/wri-icon.png' ?>"
         type="image/png">
     <link rel="stylesheet" href="../../assets/css/global.css">
