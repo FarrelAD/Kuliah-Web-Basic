@@ -2,7 +2,7 @@
     {
         "name": "Agus",
         "class": "TI-2F",
-        "total_vote": 1,
+        "total_vote": 0,
         "description": "Mewujudkan komunitas IT yang kreatif, inovatif, dan saling mendukung dalam menjawab tantangan digital.",
         "photo_dir": "http:\/\/localhost:8000\/assets\/img\/candidate-photos\/Agus.jpg"
     },
@@ -17,7 +17,7 @@
         "name": "Chelline",
         "class": "TI-4Z",
         "description": "Maju terus! Pantang Mundur!",
-        "total_vote": 2,
+        "total_vote": 0,
         "photo_dir": "http:\/\/localhost:8000\/assets\/img\/candidate-photos\/girl-sample-1.jpg"
     }
 ]

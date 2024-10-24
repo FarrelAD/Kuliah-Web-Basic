@@ -48,7 +48,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             "description"=>$description,
             "total_vote"=>0,
             "photo_dir"=>$get_photo_dir
-            
         ];
 
         file_put_contents('../../data/candidates.json', json_encode($candidates, JSON_PRETTY_PRINT));
