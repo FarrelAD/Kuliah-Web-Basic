@@ -25,6 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $class = $classes[$i];
         $description = $descriptions[$i];
         
+        $is_img_upload_error = false;
         if (isset($images['name'][$i]) && $images['error'][$i] === UPLOAD_ERR_OK) {
             $image_name = basename($images['name'][$i]);
             $image_temp_path = $images['tmp_name'][$i];
@@ -32,13 +33,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $target_dir = __DIR__ . '/../../assets/img/candidate-photos/';
             $target_file_path = $target_dir . $image_name;
 
-            if (move_uploaded_file($image_temp_path, $target_file_path)) {
-                echo "Image for $name uploaded successfully.<br>";
-            } else { 
-                echo "Error uploading image for $name.<br>";
+            if (!move_uploaded_file($image_temp_path, $target_file_path)) {
+                $is_img_upload_error = true;
             }
         } else {
-            echo "No image provided for $name.<br>";
+            $is_img_upload_error = true;
         }
 
         $get_photo_dir = 'http://' . $_SERVER['HTTP_HOST'] . '/assets/img/candidate-photos/' . $image_name;
@@ -54,4 +53,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         file_put_contents('../../data/candidates.json', json_encode($candidates, JSON_PRETTY_PRINT));
     }
+
+    if (!$is_img_upload_error) {
+        $message = "Gambar gagal diupload";
+    } else {
+        $message = "Data kandidat berhasil diupload";
+    }
+    
+    $response = [
+        "status"=> "Success",
+        "message"=> $message
+    ];
+    echo json_encode( $response );
 }

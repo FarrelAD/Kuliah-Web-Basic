@@ -13,31 +13,35 @@
 
 <body>
     <?php
-        include '../../components/navbar.php';
-        session_start();
 
-        if (!isset($_SESSION['user_id'])) {
-            include '../../components/not_authenticated.php';
-            exit();
-        }
+    include '../../components/navbar.php';
+    session_start();
 
-        if (!$_SESSION['role'] == 'admin') {
-            include '../../components/not_authorized.php';
-        } else {
-            ?>
-            <main>
-                <h1>Buat voting</h1>
+    if (!isset($_SESSION['user_id'])) {
+        include '../../components/not_authenticated.php';
+        exit();
+    }
 
-                <p>Masukkan jumlah kandidat</p>
-                <input id="candidate-total-input" type="number" min="1" placeholder="0">
-                <button id="generator-form-btn">OK</button>
+    if (!$_SESSION['role'] == 'admin') {
+        include '../../components/not_authorized.php';
+    } else {
 
-                <form id="form-registration" action="../../controllers/admin/candidate_registration.php" enctype="multipart/form-data" method="post">
-                </form>
-            </main>
+    ?>
 
-            <script src="../../assets/js/jquery/jquery-3.7.1.min.js"></script>
-            <script src="../../assets/js/admin/make_voting.js"></script>
+    <main>
+        <h1>Buat voting</h1>
+
+        <p>Masukkan jumlah kandidat</p>
+        <input id="candidate-total-input" type="number" min="1" placeholder="0">
+        <button id="generator-form-btn">OK</button>
+
+        <form id="form-registration" action="../../controllers/admin/candidate_registration.php" enctype="multipart/form-data" method="post">
+        </form>
+    </main>
+
+    <script src="../../assets/js/jquery/jquery-3.7.1.min.js"></script>
+    <script src="../../assets/js/admin/make_voting.js"></script>
+    
     <?php } ?>
 </body>
 

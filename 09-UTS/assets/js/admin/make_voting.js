@@ -37,4 +37,29 @@ $(document).ready(() => {
 
         $('#form-registration').append(inputSubmit)
     })
+
+    $('#form-registration').submit(function(event) {
+        event.preventDefault()
+
+        const formData = new FormData(this)
+
+        $.ajax({
+            type: 'POST',
+            url: $(this).attr('action'),
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: (res) => {
+                const parsedRes = JSON.parse(res)
+                if (parsedRes.status == 'Success') {
+                    alert('Data kandidat berhasil dikirim')
+                } else {
+                    alert('Data kandidat gagal dikirim')
+                }
+            },
+            error: (xhr, status, error) => {
+                alert('Pengiriman bermasalah! Pastikan data yang dikirim sesuai dengan ketentuan yang ada')
+            }
+        })
+    })
 })

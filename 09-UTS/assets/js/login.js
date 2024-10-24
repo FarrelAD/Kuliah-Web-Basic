@@ -2,12 +2,10 @@ $(document).ready(() => {
     $('#form-login').submit(function(e) {
         e.preventDefault()
 
-        const formData = $(this).serialize()
-
         $.ajax({
             type: 'POST',
             url: $(this).attr('action'),
-            data: formData,
+            data: $(this).serialize(),
             dataType: 'json',
             success: (res) => {
                 if (res.status == 'Success') {
