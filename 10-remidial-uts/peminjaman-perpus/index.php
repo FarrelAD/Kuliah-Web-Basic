@@ -85,7 +85,7 @@ $data_buku = getBukuData();
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="controller/tambah_data.php" method="post">
+                    <form action="controller/tambah_peminjaman_data.php" method="post">
                         <label for="input-nama-peminjam" class="form-label">Nama peminjam</label>
                         <select name="id-peminjam" id="input-nama-peminjam" class="form-select">
                             <?php foreach ($data_pengguna as $key => $row) { ?>
