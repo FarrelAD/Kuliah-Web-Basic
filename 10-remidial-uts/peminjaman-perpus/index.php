@@ -1,7 +1,12 @@
 <?php
 
-require __DIR__ . "/controller/get_all_data.php";
-$result = getAllData();
+require_once __DIR__ . "/controller/get_peminjaman_data.php";
+require_once __DIR__ . "/controller/get_pengguna_data.php";
+require_once __DIR__ . "/controller/get_buku_data.php";
+
+$data_peminjaman = getPeminjamanData();
+$data_pengguna = getPenggunaData();
+$data_buku = getBukuData();
 
 ?>
 
@@ -21,7 +26,14 @@ $result = getAllData();
     <main class="container">
         <h1 class="fw-bold">Sistem Peminjaman Buku Perpustakaan</h1>
         <br><br>
-        <button type="button" class="btn btn-primary">Buat Peminjaman Baru</button>
+        <button 
+            type="button" 
+            id="buat-peminjaman-btn" 
+            class="btn btn-primary"
+            data-bs-toggle="modal"
+            data-bs-target="#create-modal"
+            >Buat Peminjaman Baru
+        </button>
         <br><br>
         <table class="table">
             <thead>
@@ -34,7 +46,7 @@ $result = getAllData();
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($result as $key => $row) { ?>
+                <?php foreach ($data_peminjaman as $key => $row) { ?>
                     <tr>
                         <td class="id-peminjaman-col"><?php echo $row['id'] ?></td>
                         <td class="peminjam-col"><?php echo $row['nama'] ?></td>
@@ -45,13 +57,13 @@ $result = getAllData();
                                 class="edit-btn btn btn-success" 
                                 data-bs-toggle="modal"
                                 data-bs-target="#edit-modal"
-                            >Edit
+                                >Edit
                             </button>
                             <button 
                                 class="delete-btn btn btn-danger"
                                 data-bs-toggle="modal"
                                 data-bs-target="#delete-modal"
-                            >Hapus
+                                >Hapus
                             </button>
                         </td>
                     </tr>
@@ -61,7 +73,49 @@ $result = getAllData();
     </main>
 
 
+
     <!-- BOOTSTRAP MODAL -->
+    
+    <!-- CREATE MODAL -->
+    <div class="modal fade" id="create-modal" tabindex="-1" aria-labelledby="create-modal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="create-modal-title">Penambahan data peminjaman baru</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="controller/tambah_data.php" method="post">
+                        <label for="input-nama-peminjam" class="form-label">Nama peminjam</label>
+                        <select name="id-peminjam" id="input-nama-peminjam" class="form-select">
+                            <?php foreach ($data_pengguna as $key => $row) { ?>
+                                <option value="<?php echo $row['id'] ?>">
+                                    <?php echo $row['nama'] ?>
+                                </option>
+                            <?php } ?>
+                        </select>
+                        <label for="input-buku-dipinjam" class="form-label">Buku yang dipinjam</label>
+                        <select name="id-buku" id="input-judul-buku" class="form-select">
+                            <?php foreach ($data_buku as $key => $row) { ?>
+                                <option value="<?php echo $row['id_buku'] ?>">
+                                    <?php echo $row['judul'] ?>
+                                </option>
+                            <?php } ?>
+                        </select>
+                        <label for="input-durasi-pinjam" class="form-label">Durasi pinjam</label>
+                        <select name="durasi-pinjam" id="input-durasi-pinjam" class="form-select">
+                            <option value="3">3 hari</option>
+                            <option value="7">7 hari</option>
+                            <option value="14">14 hari</option>
+                        </select>
+                        <input type="submit" value="Kirim" class="btn btn-primary mt-4">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- DELETE MODAL -->
     <div class="modal fade" id="delete-modal" tabindex="-1" aria-labelledby="delete-modal" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -101,6 +155,7 @@ $result = getAllData();
                         location.reload()
                     },
                     error: function(xhr, status, error) {
+                        alert('Gagal menghapus data!')
                         console.error('Error:', status, error);
                     }
                 })

@@ -2,7 +2,7 @@
 
 require_once __DIR__ . "/../config/database.php";
 
-function getAllData(): array {
+function getPeminjamanData(): array {
     $conn = getDBConnection();
     $query = <<<SQL
         SELECT pm.id, nama, judul, waktu_pengembalian
