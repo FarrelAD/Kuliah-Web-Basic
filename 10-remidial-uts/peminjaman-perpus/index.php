@@ -115,9 +115,48 @@ $data_buku = getBukuData();
         </div>
     </div>
 
+    <!-- EDIT MODAL -->
+    <div class="modal fade" id="edit-modal" tabindex="-1" aria-labelledby="edit-modal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="edit-modal-title">Perbarui Data Peminjaman</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="controller/edit_peminjaman_data.php">
+                        <label for="input-nama-peminjam" class="form-label">Nama peminjam</label>
+                        <select name="id-peminjam" id="input-update-nama-peminjam" class="form-select">
+                            <?php foreach ($data_pengguna as $key => $row) { ?>
+                                <option value="<?php echo $row['id'] ?>">
+                                    <?php echo $row['nama'] ?>
+                                </option>
+                            <?php } ?>
+                        </select>
+                        <label for="input-buku-dipinjam" class="form-label">Buku yang dipinjam</label>
+                        <select name="id-buku" id="input-update-judul-buku" class="form-select">
+                            <?php foreach ($data_buku as $key => $row) { ?>
+                                <option value="<?php echo $row['id_buku'] ?>">
+                                    <?php echo $row['judul'] ?>
+                                </option>
+                            <?php } ?>
+                        </select>
+                        <label for="input-durasi-pinjam" class="form-label">Durasi pinjam</label>
+                        <select name="durasi-pinjam" id="input-update-durasi-pinjam" class="form-select">
+                            <option value="3">3 hari</option>
+                            <option value="7">7 hari</option>
+                            <option value="14">14 hari</option>
+                        </select>
+                        <input type="submit" value="Perbarui" class="konfirmasi-update-data-btn btn btn-primary mt-4">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- DELETE MODAL -->
     <div class="modal fade" id="delete-modal" tabindex="-1" aria-labelledby="delete-modal" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="delete-modal-title">Konfirmasi Hapus data</h1>
@@ -127,7 +166,7 @@ $data_buku = getBukuData();
                     <p>Apakah anda yakin ingin menghapus data ini?</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" id="konfirmasi-delete-data-btn" class="btn btn-danger">Iya</button>
+                    <button type="button" class="konfirmasi-delete-data-btn btn btn-danger">Iya</button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batalkan</button>
                 </div>
             </div>
@@ -141,18 +180,65 @@ $data_buku = getBukuData();
         $(document).ready(() => {
             let idDataTerpilih = -1
 
+            $('.edit-btn').click(function() {
+                idDataTerpilih = parseInt($(this).closest('tr').find('.id-peminjaman-col').text(), 10)
+
+                const namaPeminjam = $(this).closest('tr').find('.peminjam-col').text()
+                const judulBuku = $(this).closest('tr').find('.buku-dipinjam-col').text()
+                
+
+                $('#input-update-nama-peminjam option').each(function() {
+                    const optionText = $(this).text().trim()
+                    if (optionText === namaPeminjam) {
+                        $(this).prop('selected', true)
+                    }
+                })
+
+                $('#input-update-judul-buku option').each(function() {
+                    const optionText = $(this).text().trim()
+                    if (optionText  === judulBuku) {
+                        $(this).prop('selected', true)
+                    }
+                })
+            })
+
+            $('.konfirmasi-update-data-btn').click(function(event) {
+                event.preventDefault()
+
+                const idPeminjam = parseInt($('#input-update-nama-peminjam').val(), 10);
+                const idBuku = parseInt($('#input-update-judul-buku').val(), 10);
+                
+                $.ajax({
+                    url: 'controller/edit_peminjaman_data.php',
+                    type: 'PUT',
+                    data: JSON.stringify({
+                        idPeminjaman: idDataTerpilih,
+                        idPeminjam: idPeminjam,
+                        idBuku: idBuku
+                    }),
+                    success: function(response) {
+                        location.reload()
+                        console.log('Sukses perbarui data')
+                    },
+                    error: function(xhr, status, error) {
+                        alert('Gagal perbarui data!')
+                        console.error('Error:', status, error);
+                    }
+                })
+            })
+
             $('.delete-btn').click(function() {
                 idDataTerpilih = parseInt($(this).closest('tr').find('.id-peminjaman-col').text(), 10)
             })
 
-            $('#konfirmasi-delete-data-btn').click(function() {
+            $('.konfirmasi-delete-data-btn').click(function() {
                 $.ajax({
                     url: 'controller/hapus_data.php',
                     type: 'DELETE',
                     data: JSON.stringify({ id: idDataTerpilih }),
                     success: function(response) {
-                        console.log('Delete successful:', response);
                         location.reload()
+                        console.log('Berhasil hapus data: ', response);
                     },
                     error: function(xhr, status, error) {
                         alert('Gagal menghapus data!')
@@ -165,3 +251,4 @@ $data_buku = getBukuData();
 </body>
 
 </html>
+

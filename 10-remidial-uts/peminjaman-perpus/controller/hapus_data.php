@@ -18,9 +18,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'DELETE') {
         $stmt = $conn->prepare($query);
         $stmt->bindParam(1, $id, PDO::PARAM_INT);
         $stmt->execute();
-
-        echo json_encode([
-            "id"=>$id,
-        ]);
     }
+} else {
+    echo "HTTP Request method yang kamu pakai tidak diizinkan!";
+    http_response_code(405);
 }
