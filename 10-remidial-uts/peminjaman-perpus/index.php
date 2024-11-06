@@ -41,6 +41,8 @@ $data_buku = getBukuData();
                     <th>ID Peminjaman</th>
                     <th>Peminjam</th>
                     <th>Buku yang dipinjam</th>
+                    <th>Durasi pinjam</th>
+                    <th>Waktu awal meminjam</th>
                     <th>Waktu pengembalian</th>
                     <th>Aksi</th>
                 </tr>
@@ -51,6 +53,8 @@ $data_buku = getBukuData();
                         <td class="id-peminjaman-col"><?php echo $row['id'] ?></td>
                         <td class="peminjam-col"><?php echo $row['nama'] ?></td>
                         <td class="buku-dipinjam-col"><?php echo $row['judul'] ?></td>
+                        <td class="durasi-pinjam-col"><?php echo $row['durasi_pinjam'] . ' hari' ?></td>
+                        <td class="waktu-awal-pinjam-col"><?php echo $row['waktu_awal_pinjam'] ?></td>
                         <td class="pengembalian-col"><?php echo $row['waktu_pengembalian'] ?></td>
                         <td class="aksi-col">
                             <button 
