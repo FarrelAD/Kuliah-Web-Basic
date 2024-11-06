@@ -233,7 +233,7 @@ $data_buku = getBukuData();
 
             $('.konfirmasi-delete-data-btn').click(function() {
                 $.ajax({
-                    url: 'controller/hapus_data.php',
+                    url: 'controller/hapus_peminjaman_data.php',
                     type: 'DELETE',
                     data: JSON.stringify({ id: idDataTerpilih }),
                     success: function(response) {
