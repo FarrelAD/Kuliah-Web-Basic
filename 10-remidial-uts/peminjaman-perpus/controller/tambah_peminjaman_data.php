@@ -10,17 +10,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if (validasiIDPengguna($idPeminjam) && validasiIDBuku($idBuku)) {
         $query = <<<SQL
-            INSERT INTO Peminjaman (id_peminjam, id_buku, waktu_pengembalian)
-            VALUES (?, ?, ?)
+            INSERT INTO Peminjaman (id_peminjam, id_buku, durasi_pinjam, waktu_awal_pinjam, waktu_pengembalian)
+            VALUES (?, ?, ?, ?, ?)
         SQL;
 
+        $waktuAwalPinjam = new DateTime();
+        $waktuAwalPinjamStr = $waktuAwalPinjam->format('Y-m-d');
         $waktuPengembalian = new DateTime();
         $waktuPengembalian->modify("+{$durasiPinjam} days");
         $waktuPengembalianStr = $waktuPengembalian->format('Y-m-d');
         $stmt = $conn->prepare($query);
         $stmt->bindParam(1, $idPeminjam, PDO::PARAM_INT);
         $stmt->bindParam(2, $idBuku, PDO::PARAM_INT);
-        $stmt->bindParam(3, $waktuPengembalianStr, PDO::PARAM_STR);
+        $stmt->bindParam(3, $durasiPinjam, PDO::PARAM_INT);
+        $stmt->bindParam(4, $waktuAwalPinjamStr, PDO::PARAM_STR);
+        $stmt->bindParam(5, $waktuPengembalianStr, PDO::PARAM_STR);
         $stmt->execute();
 
         // Redirect ke root path
