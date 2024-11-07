@@ -24,7 +24,7 @@ $data_buku = getBukuData();
 
 <body>
     <main class="container">
-        <h1 class="fw-bold">Sistem Peminjaman Buku Perpustakaan</h1>
+        <h1 class="fw-bold my-3">Sistem Peminjaman Buku Perpustakaan</h1>
         <br><br>
         <button 
             type="button" 

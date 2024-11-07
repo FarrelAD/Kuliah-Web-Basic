@@ -11,7 +11,7 @@ function getDBConnection(): PDO {
         $dsn = "sqlsrv:Server=$serverName; Database=$database";
         $conn = new PDO($dsn, $username, $password);
     } catch (PDOException $e) {
-        echo "". $e->getMessage();
+        echo "Error: ". $e->getMessage();
     }
 
     return $conn;

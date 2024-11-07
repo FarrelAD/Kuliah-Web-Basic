@@ -1,6 +1,9 @@
 <?php
 
 require_once __DIR__ . "/../config/database.php";
+require_once __DIR__ . "/../helper/validasiIDPengguna.php";
+require_once __DIR__ . "/../helper/validasiIDBuku.php";
+
 $conn = getDBConnection();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -37,30 +40,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         ]);
     }
 
-}
-
-function validasiIDPengguna($idPeminjam): bool {
-    global $conn;
-
-    $query = <<<SQL
-        SELECT * FROM Pengguna WHERE id = ?
-    SQL;
-    $stmt = $conn->prepare($query);
-    $stmt->bindParam(1, $idPeminjam, PDO::PARAM_INT);
-    $stmt->execute();
-    $result = $stmt->fetch(PDO::FETCH_ASSOC);
-    return (!$result) ? false : true;
-}
-
-function validasiIDBuku($idBuku): bool {
-    global $conn;
-
-    $query = <<<SQL
-        SELECT * FROM Buku WHERE id_buku = ?
-    SQL;
-    $stmt = $conn->prepare($query);
-    $stmt->bindParam(1, $idBuku, PDO::PARAM_INT);
-    $stmt->execute();
-    $result = $stmt->fetch(PDO::FETCH_ASSOC);
-    return (!$result) ? false : true;
 }
