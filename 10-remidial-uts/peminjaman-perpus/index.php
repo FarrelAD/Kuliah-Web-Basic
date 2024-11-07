@@ -253,6 +253,7 @@ $data_buku = getBukuData();
                         waktuAkhirPinjam: waktuAkhirPinjam
                     }),
                     success: function(response) {
+                        alert('Berhasil perbarui data!')
                         location.reload()
                         console.log('Sukses perbarui data')
                     },
@@ -273,6 +274,7 @@ $data_buku = getBukuData();
                     type: 'DELETE',
                     data: JSON.stringify({ id: idDataTerpilih }),
                     success: function(response) {
+                        alert('Berhasil hapus data')
                         location.reload()
                         console.log('Berhasil hapus data: ', response);
                     },
