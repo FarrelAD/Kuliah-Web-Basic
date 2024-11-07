@@ -1,8 +1,8 @@
 <?php
 
-require_once __DIR__ . "/controller/get_peminjaman_data.php";
-require_once __DIR__ . "/controller/get_pengguna_data.php";
-require_once __DIR__ . "/controller/get_buku_data.php";
+require __DIR__ . "/controller/get_peminjaman_data.php";
+require __DIR__ . "/controller/get_pengguna_data.php";
+require __DIR__ . "/controller/get_buku_data.php";
 
 $data_peminjaman = getPeminjamanData();
 $data_pengguna = getPenggunaData();
@@ -55,7 +55,7 @@ $data_buku = getBukuData();
                         <td class="buku-dipinjam-col"><?php echo $row['judul'] ?></td>
                         <td class="durasi-pinjam-col"><?php echo $row['durasi_pinjam'] . ' hari' ?></td>
                         <td class="waktu-awal-pinjam-col"><?php echo $row['waktu_awal_pinjam'] ?></td>
-                        <td class="pengembalian-col"><?php echo $row['waktu_pengembalian'] ?></td>
+                        <td class="waktu-pengembalian-col"><?php echo $row['waktu_pengembalian'] ?></td>
                         <td class="aksi-col">
                             <button 
                                 class="edit-btn btn btn-success" 
@@ -128,8 +128,8 @@ $data_buku = getBukuData();
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="controller/edit_peminjaman_data.php">
-                        <label for="input-nama-peminjam" class="form-label">Nama peminjam</label>
+                    <form id="edit-form-data" action="controller/edit_peminjaman_data.php">
+                        <label for="input-update-nama-peminjam" class="form-label">Nama peminjam</label>
                         <select name="id-peminjam" id="input-update-nama-peminjam" class="form-select">
                             <?php foreach ($data_pengguna as $key => $row) { ?>
                                 <option value="<?php echo $row['id'] ?>">
@@ -137,7 +137,7 @@ $data_buku = getBukuData();
                                 </option>
                             <?php } ?>
                         </select>
-                        <label for="input-buku-dipinjam" class="form-label">Buku yang dipinjam</label>
+                        <label for="input-update-buku-dipinjam" class="form-label">Buku yang dipinjam</label>
                         <select name="id-buku" id="input-update-judul-buku" class="form-select">
                             <?php foreach ($data_buku as $key => $row) { ?>
                                 <option value="<?php echo $row['id_buku'] ?>">
@@ -145,12 +145,16 @@ $data_buku = getBukuData();
                                 </option>
                             <?php } ?>
                         </select>
-                        <label for="input-durasi-pinjam" class="form-label">Durasi pinjam</label>
+                        <label for="input-update-durasi-pinjam" class="form-label">Durasi pinjam</label>
                         <select name="durasi-pinjam" id="input-update-durasi-pinjam" class="form-select">
                             <option value="3">3 hari</option>
                             <option value="7">7 hari</option>
                             <option value="14">14 hari</option>
                         </select>
+                        <label for="input-update-waktu-awal-pinjam">Waktu awal meminjam</label>
+                        <input type="date" id="input-update-waktu-awal-pinjam" class="form-control" disabled>
+                        <label for="input-update-waktu-akhir-pinjam">Waktu akhir meminjam</label>
+                        <input type="date" id="input-update-waktu-akhir-pinjam" class="form-control" disabled>
                         <input type="submit" value="Perbarui" class="konfirmasi-update-data-btn btn btn-primary mt-4">
                     </form>
                 </div>
@@ -189,7 +193,19 @@ $data_buku = getBukuData();
 
                 const namaPeminjam = $(this).closest('tr').find('.peminjam-col').text()
                 const judulBuku = $(this).closest('tr').find('.buku-dipinjam-col').text()
+                const durasiPinjam = $(this).closest('tr').find('.durasi-pinjam-col').text()
+                const waktuAwalPinjam = $(this).closest('tr').find('.waktu-awal-pinjam-col').text()
+                const waktuAkhirPinjam = $(this).closest('tr').find('.waktu-pengembalian-col').text()
                 
+                $('#input-update-waktu-awal-pinjam').val(waktuAwalPinjam)
+                $('#input-update-waktu-akhir-pinjam').val(waktuAkhirPinjam)
+
+                $('#input-update-durasi-pinjam option').each(function() {
+                    const optionText = $(this).text().trim()
+                    if (optionText === durasiPinjam) {
+                        $(this).prop('selected', true)
+                    }
+                })
 
                 $('#input-update-nama-peminjam option').each(function() {
                     const optionText = $(this).text().trim()
@@ -206,19 +222,35 @@ $data_buku = getBukuData();
                 })
             })
 
-            $('.konfirmasi-update-data-btn').click(function(event) {
+            $('#input-update-durasi-pinjam').change(function() {
+                const waktuAwal = $('#input-update-waktu-awal-pinjam').val()
+                const durasiPinjam = parseInt($('#input-update-durasi-pinjam').val(), 10)
+
+                const waktuAwalDate = new Date(waktuAwal)
+                waktuAwalDate.setDate(waktuAwalDate.getDate() + durasiPinjam)
+                const waktuAkhirFormatted = waktuAwalDate.toISOString().split('T')[0]
+                $('#input-update-waktu-akhir-pinjam').val(waktuAkhirFormatted)
+            });
+
+            $('#edit-form-data').submit(function(event) {
                 event.preventDefault()
 
-                const idPeminjam = parseInt($('#input-update-nama-peminjam').val(), 10);
-                const idBuku = parseInt($('#input-update-judul-buku').val(), 10);
+                const idPeminjaman = idDataTerpilih
+                const idPeminjam = parseInt($('#input-update-nama-peminjam').val(), 10)
+                const idBuku = parseInt($('#input-update-judul-buku').val(), 10)
+                const durasiPinjam = parseInt($('#input-update-durasi-pinjam').val(), 10)
+                const waktuAkhirPinjam = $('#input-update-waktu-akhir-pinjam').val()
                 
+
                 $.ajax({
                     url: 'controller/edit_peminjaman_data.php',
                     type: 'PUT',
                     data: JSON.stringify({
-                        idPeminjaman: idDataTerpilih,
+                        idPeminjaman: idPeminjaman,
                         idPeminjam: idPeminjam,
-                        idBuku: idBuku
+                        idBuku: idBuku,
+                        durasiPinjam: durasiPinjam,
+                        waktuAkhirPinjam: waktuAkhirPinjam
                     }),
                     success: function(response) {
                         location.reload()
